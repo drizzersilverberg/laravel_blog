@@ -13,7 +13,18 @@
 
 /* url: localhost:8000 */
 Route::get('/', function () {
-    return view('welcome');
+    # -- ver.1
+    // return view('welcome', ['name' => 'World']);
+
+    # -- ver. 2
+    // return view('welcome')->with('name', 'World');
+
+    # -- ver. 3
+    $name = 'Laracasts';
+    $tasks = ['eat', 'code', 'sleep'];
+
+    // return view('welcome', compact('name'));
+    return view('welcome', compact('name','tasks'));
 });
 
 /* url: localhost:8000/about */
