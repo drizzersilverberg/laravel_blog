@@ -11,6 +11,12 @@
 |
 */
 
+/* url: localhost:8000 */
 Route::get('/', function () {
     return view('welcome');
+});
+
+/* url: localhost:8000/about */
+Route::get('about', function () {
+    return view('about');
 });
