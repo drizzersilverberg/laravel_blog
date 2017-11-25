@@ -39,5 +39,7 @@ run server:
     $ php artisan serve
 
 ## Available Routes:
+    localhost:8000/
     localhost:8000/tasks
     localhost:8000/tasks/{taskId}
+    localhost:8000/posts
