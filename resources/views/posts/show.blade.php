@@ -22,5 +22,30 @@
             </ul>
         </div>
 
+        {{-- add a comment --}}
+
+        <hr>
+
+        <div class="card">
+            <div class="card-block">
+                <div class="container" style="padding-top: 1em;">
+                    <form method="POST" action="/posts/{{ $post->id }}/comments">
+
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <textarea class="form-control" name="body" placeholder="Your comment here" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Add Comment</button>
+                        </div>
+                    </form>
+
+                    @include ('layouts.errors')
+
+                </div>
+            </div>
+        </div>
+
     </div>
 @endsection
