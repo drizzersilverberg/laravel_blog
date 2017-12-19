@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')
+            ->except(['index','show']);
+    }
+
     public function index()
     {
         $posts = Post::latest()
@@ -25,14 +30,16 @@ class PostsController extends Controller
         return view('posts.create');
     }
 
-    public function store(Request $request)
+    public function store()
     {
         $this->validate(request(), [
             'title' => 'required',
             'body' => 'required',
         ]);
 
-        Post::create(request(['title','body']));
+        auth()->user()->publish(
+            new Post(request(['title', 'body']))
+        );
 
         return redirect('/');
     }
