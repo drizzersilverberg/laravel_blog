@@ -1,9 +1,7 @@
 <?php
 
 /* url: localhost:8000 */
-Route::get('/', function(){
-    return view('welcome');
-});
+Route::get('/', 'PostsController@index')->name('home');
 
 /* url: localhost:8000/posts */
 Route::get('posts', 'PostsController@index');
@@ -16,3 +14,8 @@ Route::get('posts/{post}', 'PostsController@show');
 
 Route::post('posts/{post}/comments', 'CommentsController@store');
 
+Route::get('register', 'RegistrationController@create');
+Route::post('register', 'RegistrationController@store');
+Route::get('login', 'SessionsController@create');
+Route::post('login', 'SessionsController@store');
+Route::get('logout', 'SessionsController@destroy');
