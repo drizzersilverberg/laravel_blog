@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use \App\Billing\Stripe;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $defer = true;
+
     /**
      * Bootstrap any application services.
      *
@@ -25,6 +28,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('App\Billing\Stripe', function($app) {
+            $config = $app->make('config')
+                        ->get('database.redis');
+
+            return new RedisManager(Arr::pull($config, 'client', 'predis'), $config);
+        });
     }
 }
