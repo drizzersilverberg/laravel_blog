@@ -1,10 +1,5 @@
 <?php
 
-# temporary placed here ...
-App::singleton('App\Billing\Stripe', function() {
-    return new \App\Billing\Stripe(config('services.stripe.secret'));
-});
-
 /* url: localhost:8000 */
 Route::get('/', 'PostsController@index')->name('home');
 
