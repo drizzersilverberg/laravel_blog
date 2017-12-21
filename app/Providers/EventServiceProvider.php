@@ -13,9 +13,20 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
+        'App\Events\ThreadCreated' => [
+            'App\Listeners\NotifySubscribers',
+
+            /*
+                execute 'php artisan event:generate' to automatically generate ThreadCreated event and NotifySubscribers listener
+            */
+
+            'App\Listeners\CheckForSpam',
+
+            /*
+                Above line manually inserted after executing 'php artisan make:listener CheckForSpam --event="ThreadCreated"'
+            */
         ],
+
     ];
 
     /**
